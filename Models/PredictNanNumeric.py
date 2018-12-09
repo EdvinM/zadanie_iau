@@ -1,8 +1,13 @@
+import numpy as np
+import pandas as pd
 from pandas import DataFrame
 
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import make_pipeline
 from sklearn.base import TransformerMixin
+
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.linear_model import LinearRegression
 
 class PredictNanNumeric(TransformerMixin):
     def __init__(self, predicting_column, columns):

@@ -1,3 +1,5 @@
+import numpy as np
+import pandas as pd
 from pandas import DataFrame
 
 from sklearn.pipeline import Pipeline
@@ -14,8 +16,15 @@ class Replacer(TransformerMixin):
     def fit(self, *args, **kwargs):
         return self
     
+    def getFormatted(self, number):
+        if number == self.replaceWhat: #or not type(self.typeFormatter) is number 
+            return self.replaceWith
+        else:
+            return self.typeFormatter(number)
+    
     def transform(self, df, **transform_params):
         for column in self.columns:
-            df[column] = df[column].map(lambda x: self.replaceWith if x == self.replaceWhat else self.typeFormatter(x))
+            if column in df.columns:
+                df[column] = df[column].map(lambda x: self.getFormatted(x))
         
         return df

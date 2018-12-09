@@ -1,3 +1,5 @@
+import numpy as np
+import pandas as pd
 from pandas import DataFrame
 
 from sklearn.pipeline import Pipeline
@@ -5,6 +7,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.base import TransformerMixin
 
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn import preprocessing
 
 class Classifier(TransformerMixin):
     def __init__(self, predicting_column, columns):

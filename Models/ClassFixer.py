@@ -1,3 +1,6 @@
+import numpy as np
+import pandas as pd
+
 from pandas import DataFrame
 
 from sklearn.pipeline import Pipeline
@@ -12,5 +15,6 @@ class ClassFixer(TransformerMixin):
         return self
     
     def transform(self, df, **transform_params):
-        df['class'] = df['class'].map(lambda x: str(x).split('.')[0])
+        if 'class' in df.columns:
+            df['class'] = df['class'].map(lambda x: str(x).split('.')[0])
         return df

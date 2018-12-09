@@ -1,6 +1,6 @@
-from pandas import DataFrame
 import numpy as np
 import pandas as pd
+from pandas import DataFrame
 
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import make_pipeline

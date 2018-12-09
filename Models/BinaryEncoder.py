@@ -1,3 +1,5 @@
+import numpy as np
+import pandas as pd
 from pandas import DataFrame
 
 from sklearn.pipeline import Pipeline
@@ -19,6 +21,7 @@ class BinaryEncoder(TransformerMixin):
     
     def transform(self, df, **transform_params):
         for column in self.columns:
-            df[column] = df[column].map(lambda value: self.mapToBool(value))
+            if column in df.columns:
+                df[column] = df[column].map(lambda value: self.mapToBool(value))
             
         return df

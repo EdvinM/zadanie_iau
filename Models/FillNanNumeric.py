@@ -1,8 +1,11 @@
+import numpy as np
+import pandas as pd
 from pandas import DataFrame
 
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import make_pipeline
 from sklearn.base import TransformerMixin
+from sklearn.impute import SimpleImputer
 
 class FillNanNumeric(TransformerMixin):
     def __init__(self, strategy, column_name):
