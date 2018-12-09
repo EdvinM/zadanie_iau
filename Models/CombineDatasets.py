@@ -1,13 +1,16 @@
 from pandas import DataFrame
+import numpy as np
+import pandas as pd
 
 from sklearn.pipeline import Pipeline
 from sklearn.pipeline import make_pipeline
 from sklearn.base import TransformerMixin
 
 class CombineDatasets(TransformerMixin):
-    def __init__(self, data_personal, data_other):
-        self.data_personal = data_personal
-        self.data_other = data_other
+    def __init__(self):
+        #self.data_personal = data_personal
+        #self.data_other = data_other
+        return
         
     def handle_duplicate_rows(self, rows):
         numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
@@ -33,13 +36,15 @@ class CombineDatasets(TransformerMixin):
         return float('nan')
         
     def fit(self, *args, **kwargs):
+        self.data_personal = args[0]
+        self.data_other = args[1]
         return self
     
     def transform(self, df, **transform_params):
         grouped = self.data_other[self.data_other.duplicated(subset=['name', 'address'], keep=False)].groupby(['name', 'address'])
         
         result = grouped.apply(self.handle_duplicate_rows).reset_index(drop=True)
-        dropped_duplicates = data_other.drop_duplicates(subset=['name', 'address'], keep=False)
+        dropped_duplicates = self.data_other.drop_duplicates(subset=['name', 'address'], keep=False)
         self.data_other = pd.concat([dropped_duplicates, result], sort=True)
         
         df = pd.merge(self.data_personal, self.data_other, how='inner', left_on=['name', 'address'], right_on=['name', 'address'])
