@@ -34,15 +34,15 @@ class Classifier(TransformerMixin):
         return encoder.inverse_transform(data[column_name])
     
     def fit(self, *args, **kwargs):
+        self.train = args[0]
         return self
     
     def transform(self, df, **transform_params):
         
-        if df[self.predicting_column].dtype != np.dtype(np.float64):
-            column_encoder = self.label_encoder(df, self.predicting_column)
+        if self.train[self.predicting_column].dtype != np.dtype(np.float64):
+            column_encoder = self.label_encoder(self.train, self.predicting_column)
         
-        
-        train_X, train_y = self.get_data_columns(df)
+        train_X, train_y = self.get_data_columns(self.train)
         train_X_nan = self.get_nan_data_columns(df)
         
         if len(train_X_nan) > 0:
@@ -54,8 +54,7 @@ class Classifier(TransformerMixin):
 
             df.loc[df[self.predicting_column].isnull(), self.predicting_column] = predicted
 
-
-            if df[self.predicting_column].dtype != np.dtype(np.float64):
-                df[self.predicting_column] = self.label_decoder(df, encoder, self.predicting_column).reshape(-1, 1)
+            if self.train[self.predicting_column].dtype != np.dtype(np.float64):
+                self.train[self.predicting_column] = self.label_decoder(self.train, encoder, self.predicting_column).reshape(-1, 1)
         
         return df

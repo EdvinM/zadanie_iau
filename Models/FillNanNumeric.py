@@ -13,11 +13,12 @@ class FillNanNumeric(TransformerMixin):
         self.column_name = column_name
         
     def fit(self, *args, **kwargs):
+        self.train = args[0]
         return self
     
     def transform(self, df, **transform_params):
         imputer = SimpleImputer(missing_values=np.nan, strategy=self.strategy)
-        imputer = imputer.fit(np.array(df[self.column_name]).reshape(-1, 1))
+        imputer = imputer.fit(np.array(self.train[self.column_name]).reshape(-1, 1))
         
         output = imputer.transform(np.array(df[self.column_name]).reshape(-1, 1))
         df[self.column_name] = output

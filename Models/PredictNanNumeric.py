@@ -24,10 +24,11 @@ class PredictNanNumeric(TransformerMixin):
         return data[data[self.predicting_column].isnull()][self.columns]
         
     def fit(self, *args, **kwargs):
+        self.train = args[0]
         return self
     
     def transform(self, df, **transform_params):
-        train_X, train_y = self.get_data_columns(df)
+        train_X, train_y = self.get_data_columns(self.train)
         train_X_nan = self.get_nan_data_columns(df)
         
         lr = LinearRegression()
