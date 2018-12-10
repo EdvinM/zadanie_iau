@@ -31,6 +31,9 @@ class PredictNanNumeric(TransformerMixin):
         train_X, train_y = self.get_data_columns(self.train)
         train_X_nan = self.get_nan_data_columns(df)
         
+        if len(train_X_nan) <= 0:
+            return df
+        
         lr = LinearRegression()
         lr_model = lr.fit(train_X, train_y)
         lr_score = lr_model.score(train_X, train_y)
