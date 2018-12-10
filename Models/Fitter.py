@@ -19,4 +19,5 @@ class Fitter(TransformerMixin, BaseEstimator):
         return self
     
     def transform(self, df, **transform_params):
-        return self.test, self.train
+        print("afoj edvin " + str(len(df)))
+        return df
