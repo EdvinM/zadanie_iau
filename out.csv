@@ -9,7 +9,7 @@ Id,Predicted
 7,negative
 8,negative
 9,negative
-10,increased binding protein
+10,negative
 11,negative
 12,negative
 13,negative
@@ -39,7 +39,7 @@ Id,Predicted
 37,negative
 38,negative
 39,negative
-40,negative
+40,increased binding protein
 41,negative
 42,negative
 43,negative
@@ -122,7 +122,7 @@ Id,Predicted
 120,negative
 121,negative
 122,negative
-123,negative
+123,increased binding protein
 124,negative
 125,negative
 126,negative
@@ -223,7 +223,7 @@ Id,Predicted
 221,negative
 222,decreased binding protein
 223,negative
-224,negative
+224,increased binding protein
 225,increased binding protein
 226,negative
 227,negative
@@ -313,7 +313,7 @@ Id,Predicted
 311,negative
 312,negative
 313,negative
-314,negative
+314,increased binding protein
 315,negative
 316,negative
 317,negative
@@ -442,11 +442,11 @@ Id,Predicted
 440,negative
 441,negative
 442,negative
-443,negative
+443,increased binding protein
 444,negative
 445,negative
 446,negative
-447,negative
+447,decreased binding protein
 448,negative
 449,negative
 450,negative
@@ -474,7 +474,7 @@ Id,Predicted
 472,negative
 473,negative
 474,negative
-475,increased binding protein
+475,negative
 476,negative
 477,negative
 478,negative
@@ -516,7 +516,7 @@ Id,Predicted
 514,negative
 515,negative
 516,negative
-517,negative
+517,increased binding protein
 518,increased binding protein
 519,negative
 520,negative
